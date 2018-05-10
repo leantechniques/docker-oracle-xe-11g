@@ -29,6 +29,8 @@ if [ "$ORACLE_DISABLE_ASYNCH_IO" = true ]; then
   service oracle-xe restart
 fi
 
+echo "ALTER USER SYSTEM IDENTIFIED BY password;" | sqlplus -s SYSTEM/oracle
+
 for f in /docker-entrypoint-initdb.d/*; do
   case "$f" in
     *.sh)     echo "$0: running $f"; . "$f" ;;
